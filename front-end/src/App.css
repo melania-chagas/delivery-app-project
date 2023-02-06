@@ -1,4 +1,6 @@
-.App {
+/* stylelint-disable selector-max-specificity */
+
+/* .App {
   align-items: center;
   background: #0fa36b;
   color: #464646;
@@ -10,10 +12,10 @@
   width: 100%;
 }
 
-.App > .logo {
+.App>.logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 3em;
   font-weight: 900;
 }
@@ -51,4 +53,11 @@
   100% {
     transform: rotate(-10deg);
   }
+} */
+
+html, body, #root {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
+

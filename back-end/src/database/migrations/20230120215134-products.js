@@ -18,15 +18,14 @@ module.exports = {
         type: DataTypes.DECIMAL(4, 2),
         allowNull: false,
       },
-      urlImage: {
+      url_image: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: 'urlImage'
       }
     });
   },
 
   async down (queryInterface, _Sequelize) {
-   await queryInterface.dropTable('products');
+    await queryInterface.dropTable('products');
   }
 };

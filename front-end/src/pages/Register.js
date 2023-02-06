@@ -1,11 +1,17 @@
 import { validate } from 'email-validator';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import postRegister from '../api/register';
+import '../style/register.css';
+import { setDataToLocalStorage } from '../utils/localStorage';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [invalid, setInvalid] = useState(false);
+
+  const navigate = useHistory();
 
   const register = () => {
     const numberTwelve = 12;
@@ -16,12 +22,18 @@ export default function Register() {
   };
 
   const createRegister = async (newRegister) => {
+    const created = 201;
     const newPostRegister = await postRegister(newRegister);
-    return newPostRegister;
+    if (newPostRegister === undefined) setInvalid(true);
+    else if (newPostRegister.status === created) {
+      setDataToLocalStorage('user', newPostRegister.data);
+      return newPostRegister && navigate.push('/customer/products');
+    }
   };
 
   return (
-    <div>
+    <div className="register-inputs">
+      <h1>Cadastre-se</h1>
       <label htmlFor="email">
         Nome
         <input
@@ -53,10 +65,15 @@ export default function Register() {
         data-testid="common_register__button-register"
         type="button"
         disabled={ !register() }
-        onClick={ () => createRegister({ email }) }
+        onClick={ () => createRegister({ name, email, password }) }
       >
         Cadastrar
       </button>
+      {invalid && (
+        <div data-testid="common_register__element-invalid_register">
+          <p>Já existe um usuário com esse nome ou e-mail.</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../style/home.css';
+import '../style/navBar.css';
 
 function Home() {
   const history = useHistory();
@@ -15,7 +17,9 @@ function Home() {
     path();
   });
   return (
-    <div>home</div>
+    <div className="page-home">
+      <h1>Home</h1>
+    </div>
   );
 }
 

@@ -23,7 +23,6 @@ module.exports = {
       },
       sellerId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         field: 'seller_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -49,11 +48,12 @@ module.exports = {
       },
       saleDate: {
         type: DataTypes.DATE,
+        field: 'sale_date',
         defaultValue: fn('NOW'),
       },
       status: {
         type: DataTypes.STRING,
-        allowNull: false
+        defaultValue: 'Pendente',
       },
     });
   },
